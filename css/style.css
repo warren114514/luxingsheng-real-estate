@@ -502,8 +502,25 @@ p { margin-bottom: var(--spacing-sm); color: var(--color-gray-600); }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
 /* 导航隐藏（首页滚动过 Hero 后） */
-.nav-menu.hidden-on-scroll, .consult-btn.hidden-on-scroll {
+.nav-menu.hidden-on-scroll {
     display: none !important;
+}
+.consult-btn.hidden-on-scroll {
+    display: none !important;
+}
+
+/* 导航菜单弹出样式（桌面端点击汉堡菜单） */
+.nav-menu.active {
+    display: flex !important;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    flex-direction: column;
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-md);
+    gap: var(--spacing-sm);
 }
 
 /* === 响应式 === */

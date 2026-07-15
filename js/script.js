@@ -53,6 +53,7 @@ function initNavbarScroll() {
     var header = document.getElementById('siteHeader');
     var navMenu = document.querySelector('.nav-menu');
     var consultBtn = document.querySelector('.consult-btn');
+    var menuToggle = document.querySelector('.menu-toggle');
     if (!header) return;
 
     window.addEventListener('scroll', function () {
@@ -70,9 +71,25 @@ function initNavbarScroll() {
             if (window.scrollY > heroBottom - 100) {
                 navMenu.classList.add('hidden-on-scroll');
                 consultBtn.classList.add('hidden-on-scroll');
+                if (menuToggle) menuToggle.style.display = 'flex';
             } else {
                 navMenu.classList.remove('hidden-on-scroll');
                 consultBtn.classList.remove('hidden-on-scroll');
+                // 大屏时汉堡菜单不显示
+                if (window.innerWidth > 768 && menuToggle) menuToggle.style.display = 'none';
+            }
+        }
+    });
+
+    // 窗口缩放时也处理
+    window.addEventListener('resize', function () {
+        var heroSection = document.getElementById('top');
+        if (heroSection) {
+            var heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            if (window.scrollY <= heroBottom - 100 && window.innerWidth > 768) {
+                navMenu.classList.remove('hidden-on-scroll');
+                consultBtn.classList.remove('hidden-on-scroll');
+                if (menuToggle) menuToggle.style.display = 'none';
             }
         }
     });
